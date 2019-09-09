@@ -19,4 +19,3 @@ def repo(reponame):
 def events():
     r = requests.get(URL).json()
     return r
-
