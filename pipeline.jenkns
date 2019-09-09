@@ -1,0 +1,31 @@
+#!groovy
+properties([disableConcurrentBuilds()])
+
+pipeline {
+    agent {
+        label 'master'
+    }
+    options {
+        timestamps()
+    }
+    stages {
+        stage ('Get latest code') {
+            steps {
+                checkout scm
+            }
+        }
+        stage ('run tests') {
+            steps {
+                sh '''
+                    virtualenv .venv
+                    pip install -r requirements
+                    source .venv/bin/activate
+                    py.test
+                '''
+            }
+        }
+    }
+
+
+
+}
