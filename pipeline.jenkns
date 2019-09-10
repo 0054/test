@@ -29,7 +29,7 @@ pipeline {
                 sh '''
                     ssh amsterdam mkdir /tmp/build || true
                     ssh amsterdam git clone https://github.com/0054/test.git /tmp/build
-                    ssh amsterdam bash /tmp/build/test/build.sh
+                    ssh amsterdam bash /tmp/build/build.sh
                     ssh amsterdam rm -rf /tmp/build/ || true
                     '''
             }
