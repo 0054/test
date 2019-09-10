@@ -39,7 +39,7 @@ pipeline {
                 sh '''
                     ssh amsterdam docker stop api || true
                     ssh amsterdam docker rm api || true
-                    ssh amsterdam docker run -d -p 5000:5000 flask_app api
+                    ssh amsterdam docker run -d -p 5000:5000 --name api flask_app
                     '''
             }
         }
