@@ -27,10 +27,10 @@ pipeline {
         stage ('build') {
             steps {
                 sh '''
+                    ssh amsterdam rm -rf /tmp/build/ || true
                     ssh amsterdam mkdir /tmp/build || true
                     ssh amsterdam git clone https://github.com/0054/test.git /tmp/build
                     ssh amsterdam bash /tmp/build/build.sh
-                    ssh amsterdam rm -rf /tmp/build/ || true
                     '''
             }
         }
