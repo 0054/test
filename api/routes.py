@@ -8,7 +8,9 @@ URL = 'https://api.github.com'
 
 @api.route('/')
 def index():
-    return "hello world"
+    return "usage:
+            URL:5000/repo/<reponame>
+            URL:5000/check"
 
 @api.route('/repo/<reponame>')
 def repo(reponame):
