@@ -3,8 +3,8 @@ import requests
 
 
 api = Blueprint('api', __name__)
-
 URL = 'https://api.github.com'
+
 
 @api.route('/')
 def index():
