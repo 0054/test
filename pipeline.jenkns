@@ -17,9 +17,9 @@ pipeline {
         stage ('run tests') {
             steps {
                 sh '''
-                    virtualenv .venv
-                    pip install -r requirements
+                    /usr/local/bin/virtualenv .venv
                     source .venv/bin/activate
+                    pip install -r requirements
                     py.test
                 '''
             }
