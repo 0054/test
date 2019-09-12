@@ -8,6 +8,14 @@ pipeline {
     options {
         timestamps()
     }
+    post {
+        success {
+            setBuildStatus("Build succeeded", "SUCCESS");
+        }
+        failure {
+            setBuildStatus("Build failed", "FAILURE");
+        }
+    }
     stages {
         stage ('Get latest code') {
             steps {
