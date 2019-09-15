@@ -43,11 +43,14 @@ pipeline {
         }
         stage ('build'){
             steps {
+                script {
 
                 def imageWithApp = docker.build("flask_app:${env.BUILD_ID}")
                     imageWithApp.inside {
                         sh 'ps -ef'
                     }
+
+                }
             }
         }
         // stage ('build') {
