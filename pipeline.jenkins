@@ -41,16 +41,22 @@ pipeline {
                 '''
             }
         }
-        stage ('build') {
-            steps {
-                sh '''
-                    ssh amsterdam rm -rf /tmp/build/ || true
-                    ssh amsterdam mkdir /tmp/build || true
-                    ssh amsterdam git clone https://github.com/0054/test.git /tmp/build
-                    ssh amsterdam bash /tmp/build/build.sh
-                    '''
-            }
+        stage ('build'){
+            def imageWithApp = docker.build("flask_app:${env.BUILD_ID}")
+                imageWithApp.inside {
+                    sh 'ps -ef'
+                }
         }
+        // stage ('build') {
+        //     steps {
+        //         sh '''
+        //             ssh amsterdam rm -rf /tmp/build/ || true
+        //             ssh amsterdam mkdir /tmp/build || true
+        //             ssh amsterdam git clone https://github.com/0054/test.git /tmp/build
+        //             ssh amsterdam bash /tmp/build/build.sh
+        //             '''
+        //     }
+        // }
         stage('deploy') {
             steps {
                 sh '''
